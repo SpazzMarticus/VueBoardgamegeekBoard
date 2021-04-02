@@ -2,8 +2,8 @@ import dayjs from "dayjs";
 
 const initialWait = 100;
 
-const endpoint = 'https://www.boardgamegeek.com/xmlapi2/';
-const bggUriBase = 'https://boardgamegeek.com/boardgame/';
+const endpoint = "https://www.boardgamegeek.com/xmlapi2/";
+const bggUriBase = "https://boardgamegeek.com/boardgame/";
 
 const today = dayjs();
 
