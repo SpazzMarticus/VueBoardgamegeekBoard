@@ -71,8 +71,8 @@ export default {
     margin-bottom: 4px;
   }
 
-  &.last-played-week{
-      background-color: #d9e5f1;
+  &.last-played-week {
+    background-color: #d9e5f1;
   }
   // &.last-played-month{
   //     background-color: lightpink;

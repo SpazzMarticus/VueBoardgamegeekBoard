@@ -187,7 +187,7 @@ button,
     cursor: not-allowed;
   }
 
-  .icon{
+  .icon {
     height: 1.5rem;
     widows: 1.5rem;
   }
@@ -197,7 +197,7 @@ button,
   display: flex;
   justify-content: space-between;
 }
-.center{
+.center {
   display: flex;
   justify-content: center;
 }
