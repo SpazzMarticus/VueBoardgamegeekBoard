@@ -16,7 +16,7 @@
           </Game>
         </div>
 
-        <div class="center">
+        <div class="center select">
           <select v-model="sortBy">
             <option
               v-for="(sortOption, key) in sortOptions"
@@ -143,6 +143,14 @@ export default {
   flex-direction: column;
 }
 
+.select {
+  padding-bottom: 12px;
+
+  select {
+    padding: 4px;
+  }
+}
+
 .loading {
   padding: 2rem;
   font-size: 120%;
@@ -158,7 +166,7 @@ export default {
   gap: 4px;
   @media screen and (min-width: 600px) {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 0.6rem 1rem;
   }
 
   .game {
@@ -168,6 +176,7 @@ export default {
 
 .game {
   margin-top: 1rem;
-  padding: 6px;
+  padding: 6px 8px;
+  border-radius: 4px;
 }
 </style>

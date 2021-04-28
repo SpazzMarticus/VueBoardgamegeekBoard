@@ -5,10 +5,14 @@
     </div>
     <div class="content-container">
       <div class="flex">
-      <a class="name" :href="game.uri" target="_blank" rel="nofollow noopener">{{
-        game.name
-      }}</a>
-      <slot name="button"></slot>
+        <a
+          class="name"
+          :href="game.uri"
+          target="_blank"
+          rel="nofollow noopener"
+          >{{ game.name }}</a
+        >
+        <slot name="button"></slot>
       </div>
       <div v-if="game.playCount">
         <small>
@@ -40,8 +44,7 @@ export default {
       let classNames = [];
       if (this.game.lastPlayAgo === null) {
         classNames.push("last-played-never");
-      }
-      if (this.game.lastPlayAgo <= 7) {
+      } else if (this.game.lastPlayAgo <= 7) {
         classNames.push("last-played-week");
       } else if (this.game.lastPlayAgo <= 30) {
         classNames.push("last-played-month");
@@ -58,32 +61,34 @@ export default {
   display: flex;
   flex-direction: row;
   justify-items: center;
+  align-items: center;
 
   background-color: #efefef;
 
-  .name{
+  .name {
     display: block;
-    font-size: 110%;
+    font-size: 1.3rem;
     margin-bottom: 4px;
   }
 
-  // &.last-played-week{
-  //     background-color: lightgreen;
-  // }
+  &.last-played-week{
+      background-color: #d9e5f1;
+  }
   // &.last-played-month{
   //     background-color: lightpink;
   // }
   // &.last-played-year{
   //     background-color: lightyellow;
   // }
-  // &.last-played-never{
-  //     background-color: lightcoral;
-  // }
+  &.last-played-never {
+    background-color: #fce8e8;
+  }
 }
 .thumbnail-container {
-  width: 50px;
+  width: 70px;
+  min-width: 70px;
   display: flex;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 .thumbnail {
   display: block;
@@ -95,7 +100,8 @@ export default {
   max-width: 100%;
 }
 
-.content-container{
+.content-container {
   flex-grow: 1;
+  font-size: 1.1rem;
 }
 </style>

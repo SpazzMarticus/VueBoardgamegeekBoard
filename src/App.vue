@@ -91,7 +91,7 @@ $diceSize: 3.5rem;
 $gridGap: 1rem;
 
 $themeBackground: #fdfdfd;
-$themeLinkColor: rgb(31, 124, 82);
+$themeLinkColor: rgb(19, 87, 56);
 $themeTextLight: #575757;
 $themeSelected: #3b3a42;
 $themeTable: #d1b494;
