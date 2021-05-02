@@ -78,6 +78,7 @@ export default {
 
           plays[id].push({
             date: play.getAttribute("date"),
+            count: parseInt(play.getAttribute("quantity")),
           });
         });
 
@@ -91,13 +92,16 @@ export default {
         let collection, plays;
         [collection, plays] = values;
 
-        for (const [key, value] of Object.entries(plays)) {
+        for (const [key, playsByGame] of Object.entries(plays)) {
           let game = collection[key];
           if (game) {
-            game.playCount = value.length;
-            game.lastPlay = dayjs(value[0].date);
+            game.playCount = playsByGame.reduce(
+              (playCount, play) => playCount + play.count,
+              0
+            );
+            game.lastPlay = dayjs(playsByGame[0].date);
             game.lastPlayAgo = today.diff(game.lastPlay, "day");
-            game.plays = value;
+            game.plays = playsByGame;
           }
         }
 
