@@ -64,27 +64,38 @@ export default {
       return collection;
     });
   },
-  plays(username) {
-    return this.xml(`${endpoint}plays?username=${username}&own=1`).then(
-      (root) => {
-        let plays = {};
-        Array.from(root.getElementsByTagName("play")).forEach((play) => {
-          const item = play.getElementsByTagName("item")[0];
-          const id = item.getAttribute("objectid");
+  plays(username, page = 1, plays = {}) {
+    return new Promise((resolve) => {
+      this.xml(`${endpoint}plays?username=${username}&own=1&page=${page}`).then(
+        (root) => {
+          Array.from(root.getElementsByTagName("play")).forEach((play) => {
+            const item = play.getElementsByTagName("item")[0];
+            const id = item.getAttribute("objectid");
 
-          if (!plays[id]) {
-            plays[id] = [];
-          }
+            if (!plays[id]) {
+              plays[id] = [];
+            }
 
-          plays[id].push({
-            date: play.getAttribute("date"),
-            count: parseInt(play.getAttribute("quantity")),
+            plays[id].push({
+              date: play.getAttribute("date"),
+              count: parseInt(play.getAttribute("quantity")),
+            });
           });
-        });
 
-        return plays;
-      }
-    );
+          if (
+            root.getElementsByTagName("plays")[0].getAttribute("total") / 100 -
+              page >
+            0
+          ) {
+            this.plays(username, page + 1, plays).then(() => {
+              resolve(plays);
+            });
+          } else {
+            resolve(plays);
+          }
+        }
+      );
+    });
   },
   fetch(username) {
     return Promise.all([this.collection(username), this.plays(username)]).then(
