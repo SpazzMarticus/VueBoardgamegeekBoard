@@ -119,7 +119,7 @@ $grey: #525252;
     &:hover {
       text-decoration: underline;
     }
-    &.long{
+    &.long {
       font-size: 1.15rem;
     }
     .secondary {
