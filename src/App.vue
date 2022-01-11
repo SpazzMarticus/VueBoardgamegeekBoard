@@ -2,7 +2,13 @@
   <div v-if="showForm">
     <label>
       BoardGameGeek - Username<br />
-      <input v-model="username" v-on:keyup.enter="submit" />
+      <input
+        v-model="username"
+        v-on:keyup.enter="submit"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
       <small>
         Enter your BGG username and submit.
         <br />
