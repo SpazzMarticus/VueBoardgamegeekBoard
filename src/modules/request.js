@@ -84,7 +84,7 @@ export default {
 
           if (
             root.getElementsByTagName("plays")[0].getAttribute("total") / 100 -
-              page >
+            page >
             0
           ) {
             this.plays(username, page + 1, plays).then(() => {
@@ -106,8 +106,18 @@ export default {
         for (const [key, playsByGame] of Object.entries(plays)) {
           let game = collection[key];
           if (game) {
+            game.playsByYear = {};
             game.playCount = playsByGame.reduce(
-              (playCount, play) => playCount + play.count,
+              (playCount, play) => {
+                const year = play.date.substr(0, 4);
+                if (game.playsByYear[year]) {
+                  game.playsByYear[year] += play.count;
+                }
+                else {
+                  game.playsByYear[year] = play.count;
+                }
+                return playCount + play.count;
+              },
               0
             );
             game.lastPlay = dayjs(playsByGame[0].date);
